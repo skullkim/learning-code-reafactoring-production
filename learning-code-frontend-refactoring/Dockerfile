@@ -1,7 +1,6 @@
 FROM node:alpine
+RUN yarn global add serve 
 WORKDIR /app
-COPY package.json ./
-COPY yarn.lock ./ 
-COPY ./ ./
-RUN yarn install
-CMD ["yarn", "start"]
+RUN mkdir ./build
+COPY ./build ./build
+CMD ["serve", "-l", "3000", "-s", "build"]
