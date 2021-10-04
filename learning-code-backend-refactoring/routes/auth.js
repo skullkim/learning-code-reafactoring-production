@@ -156,6 +156,7 @@ router.delete('/logout', verifyToken, async (req, res, next) => {
        res.end();
    }
    catch(err) {
+			 console.log(err);
        next(err);
    }
 })
