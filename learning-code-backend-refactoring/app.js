@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const cors = require('cors');
+const helmet = require('helmet');
+const hpp = require('hpp');
 
 const {sequelize} = require('./models');
 const passportConfig = require('./passport');
@@ -22,7 +24,17 @@ app.use(cors({
     origin: `${process.env.FRONT_ORIGIN_PRODUCTION}`,
     credentials: true,
 }));
-app.use(morgan('dev'));
+
+if(process.env.NODE_ENV === 'production') {
+		app.enable('trust proxy');
+		app.use(morgan('combined'));
+		app.use(helmet({contentSecurityPolicy: false}));
+		app.use(hpp());
+}
+else {
+		app.use(morgan('dev'));
+}
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
