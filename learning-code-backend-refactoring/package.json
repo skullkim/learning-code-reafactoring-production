@@ -1,0 +1,44 @@
+{
+  "name": "learning_code_backend",
+  "version": "1.0.0",
+  "description": "- - - ## Project name - - - Learning code - - - ##Description A website to share programming knowledge - - - ## Goal   I made this project to learn react, API server. ## License  This project is licensed under the terms of the MIT license.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skullkim/learning-code-backend-refactoring.git"
+  },
+  "author": "iskull",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skullkim/learning-code-backend-refactoring/issues"
+  },
+  "homepage": "https://github.com/skullkim/learning-code-backend-refactoring#readme",
+  "dependencies": {
+    "aws-sdk": "^2.958.0",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "flatted": "^3.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "mysql2": "^2.2.5",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "s3-streams": "^0.4.0",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

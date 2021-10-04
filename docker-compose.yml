@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  mysql_db:
+    image: mysql
+    restart: always
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - "./setup.sql:/docker-entrypoint-inidb.d/setup.sql"
+      - "./:/docker-entrypoint-initdb.d/"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Mysql&1878
+      MYSQL_HOST: localhost
+      MYSQL_USER: iskull
+      MYSQL_PASSWORD: Mysql&1878
+      MYSQL_DATABASE: learning_code
+      TZ: Asia/Seoul
+
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: "./learning-code-backend-refactoring"
+    depends_on:
+      - mysql_db
+    volumes:
+      - /app/node_modules
+      - ./learning-code-backend-refactoring:/app
+    environment:
+      MYSQL_HOST_IP: mysql_db
+
+  client:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLIGN=true
+    build:
+      dockerfile: Dockerfile
+      context: ./learning-code-frontend-refactoring
+    volumes:
+      - /app/node_modules
+      - ./learning-code-frontend-refactoring:/app
