@@ -7,14 +7,16 @@
   A website to share programming knowledge
   - - -
 ## Goal
-  I made this project to learn react, API server, docker, nginx
+  I made this project to learn react, API server, docker, nginx, HTTPS
   - - -
 ## Used skills 
   Front-end: React  
   Backend: express  
   Database: mysql  
-	Infra: nginx, docker
+  Infra: nginx, docker
 - - -
+## Demonstration video
+[![demonstration video](./data/thumbnail.png)](https://www.youtube.com/watch?v=CBYD9jccpqA)
 ## Project before refactoring
   [repository](https://github.com/skullkim/teamProject2)
 - - -
