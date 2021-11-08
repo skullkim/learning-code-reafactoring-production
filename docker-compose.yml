@@ -12,11 +12,11 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: Mysql&1878
-      MYSQL_HOST: localhost
-      MYSQL_USER: iskull
-      MYSQL_PASSWORD: Mysql&1878
-      MYSQL_DATABASE: learning_code
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST} 
+      MYSQL_USER: ${MYSQL_USER} 
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABSE} 
       TZ: Asia/Seoul
 
   nginx:
@@ -45,14 +45,14 @@ services:
   api:
     build:
       dockerfile: Dockerfile
-      context: "./learning-code-backend-refactoring"
+      context: "$API_PATH"
     depends_on:
-      - mysql_db
+      - ${DB_NAME} 
     volumes:
       - /app/node_modules
-      - ./learning-code-backend-refactoring:/app
+      - ${API_PATH}:/app
     environment:
-      MYSQL_HOST_IP: mysql_db
+      MYSQL_HOST_IP: ${DB_NAME}
 
   client:
     stdin_open: true
@@ -60,7 +60,7 @@ services:
       - CHOKIDAR_USEPOLLIGN=true
     build:
       dockerfile: Dockerfile
-      context: ./learning-code-frontend-refactoring
+      context: ${CLIENT_PATH}
     volumes:
       - /app/node_modules
-      - ./learning-code-frontend-refactoring:/app
+      - ${CLIENT_PATH}:/app
